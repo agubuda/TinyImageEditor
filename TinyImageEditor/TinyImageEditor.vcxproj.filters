@@ -115,12 +115,8 @@
     <Font Include="misc\fonts\SourceHanSansCN-Normal.otf" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Debug\TinyImageEditer.exe.recipe" />
-    <None Include="Debug\TinyImageEditer.tlog\TinyImageEditer.lastbuildstate" />
     <None Include="libs\emscripten\shell_minimal.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Debug\TinyImageEditer.log" />
+    <None Include="imgui.ini" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="libs\glfw\lib-vc2010-32\glfw3.lib" />
