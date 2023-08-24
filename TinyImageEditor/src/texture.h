@@ -21,7 +21,7 @@ public:
     Texture(const std::string& path);
     ~Texture();
 
-    unsigned char* LoadImage(const std::string& inPath);
+    unsigned char* LoadSingleImage(const std::string& inPath);
 
     static void ResizeImage(const std::string& inPath, const std::string& outPath, int outputChannel[]);
 

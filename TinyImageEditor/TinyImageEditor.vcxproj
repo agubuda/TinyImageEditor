@@ -123,7 +123,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>Default</ConformanceMode>
-      <AdditionalIncludeDirectories>E:\GitDEV\TinyImageEditor\TinyImageEditor\libs\glfw\include;E:\GitDEV\TinyImageEditor\TinyImageEditor\backend;E:\GitDEV\TinyImageEditor\TinyImageEditor\libs\glfw\include\GLFW;E:\GitDEV\TinyImageEditor\TinyImageEditor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\GitDEV\TinyImageEditor\TinyImageEditor\stbi;E:\GitDEV\TinyImageEditor\TinyImageEditor\libs\glfw\include;E:\GitDEV\TinyImageEditor\TinyImageEditor\backend;E:\GitDEV\TinyImageEditor\TinyImageEditor\libs\glfw\include\GLFW;E:\GitDEV\TinyImageEditor\TinyImageEditor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
@@ -170,9 +170,9 @@
     <ClInclude Include="libs\glfw\include\GLFW\glfw3native.h" />
     <ClInclude Include="libs\usynergy\uSynergy.h" />
     <ClInclude Include="src\application.h" />
-    <ClInclude Include="src\stb_image.h" />
-    <ClInclude Include="src\stb_image_resize.h" />
-    <ClInclude Include="src\stb_image_write.h" />
+    <ClInclude Include="stbi\stb_image.h" />
+    <ClInclude Include="stbi\stb_image_resize.h" />
+    <ClInclude Include="stbi\stb_image_write.h" />
     <ClInclude Include="src\texture.h" />
   </ItemGroup>
   <ItemGroup>

@@ -135,7 +135,7 @@ namespace MyApp
         }
 
         static int stride = 0;
-        static int comp = 3;
+        static int comp = 1;
         ImGui::InputInt("Stride", &stride);
         ImGui::InputInt("Comp", &comp);
         if (ImGui::Button("Generate Single"))

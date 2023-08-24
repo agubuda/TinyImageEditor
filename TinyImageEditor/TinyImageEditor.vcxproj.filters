@@ -36,13 +36,13 @@
     <ClInclude Include="src\application.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\stb_image.h">
+    <ClInclude Include="stbi\stb_image.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\stb_image_resize.h">
+    <ClInclude Include="stbi\stb_image_resize.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\stb_image_write.h">
+    <ClInclude Include="stbi\stb_image_write.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\texture.h">

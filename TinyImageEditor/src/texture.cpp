@@ -1,5 +1,6 @@
 #include "GLFW/glfw3.h"
 #include "texture.h"
+#include "windows.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -39,7 +40,7 @@ Texture::~Texture()
     glDeleteTextures(1, &m_textureID);
 }
 
-unsigned char* Texture::LoadImage(const std::string& inPath) {
+unsigned char* Texture::LoadSingleImage(const std::string& inPath) {
     unsigned char* data;
     int width, height, nrChannels;
     data = stbi_load(inPath.c_str(), &width, &height, &nrChannels, 0);
@@ -102,12 +103,24 @@ void Texture::OutputSingleChannalImage(const std::string& inPath, const std::str
     //std::filesystem::create_directory(outPath);
     //std::filesystem::
     //stbiw__write_pixel(data,)
-        stbi_write_png(outPath.c_str(), 512, 512, comp, data, stride*512);
+
+    if (comp < 0 || comp> 3) {
         std::cout << "input channel Out of range." << std::endl;
+    }
+    else {
+        stbi_write_png(outPath.c_str(), 512, 512, comp, data, comp * 512);
+        //stbi_write_jpg(outPath.c_str(), 512, 512, comp, data, 100);
+
+        Sleep(500);
+        std::cout << "output single Channel" << std::endl;
+
+    }
+
+
+
 
 
     stbi_image_free(data);
     //stbi_image_free(outData);
 
-    std::cout << "output single Channel" << std::endl;
 };
