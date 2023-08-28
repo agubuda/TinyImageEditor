@@ -79,9 +79,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\opencv\build\include\opencv2;C:\opencv\build\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\opencv\build\x64\vc16\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\opencv\build\include\opencv2;C:\opencv\build\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\opencv\build\x64\vc16\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -123,7 +127,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>Default</ConformanceMode>
-      <AdditionalIncludeDirectories>E:\GitDEV\TinyImageEditor\TinyImageEditor\stbi;E:\GitDEV\TinyImageEditor\TinyImageEditor\libs\glfw\include;E:\GitDEV\TinyImageEditor\TinyImageEditor\backend;E:\GitDEV\TinyImageEditor\TinyImageEditor\libs\glfw\include\GLFW;E:\GitDEV\TinyImageEditor\TinyImageEditor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\GitDEV\TinyImageEditor\TinyImageEditor\cv2;E:\GitDEV\TinyImageEditor\TinyImageEditor\stbi;E:\GitDEV\TinyImageEditor\TinyImageEditor\libs\glfw\include;E:\GitDEV\TinyImageEditor\TinyImageEditor\backend;E:\GitDEV\TinyImageEditor\TinyImageEditor\libs\glfw\include\GLFW;E:\GitDEV\TinyImageEditor\TinyImageEditor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
@@ -131,7 +135,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>E:\GitDEV\TinyImageEditor\TinyImageEditor\libs\glfw\lib-vc2010-64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;opencv_world470d.lib;opencv_world470.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -142,7 +146,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>Default</ConformanceMode>
-      <AdditionalIncludeDirectories>E:\GitDEV\TinyImageEditor\TinyImageEditor\libs\glfw\include;E:\GitDEV\TinyImageEditor\TinyImageEditor\backend;E:\GitDEV\TinyImageEditor\TinyImageEditor\libs\glfw\include\GLFW;E:\GitDEV\TinyImageEditor\TinyImageEditor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\GitDEV\TinyImageEditor\TinyImageEditor\cv2;E:\GitDEV\TinyImageEditor\TinyImageEditor\stbi;E:\GitDEV\TinyImageEditor\TinyImageEditor\libs\glfw\include;E:\GitDEV\TinyImageEditor\TinyImageEditor\backend;E:\GitDEV\TinyImageEditor\TinyImageEditor\libs\glfw\include\GLFW;E:\GitDEV\TinyImageEditor\TinyImageEditor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
@@ -152,7 +156,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>E:\GitDEV\TinyImageEditor\TinyImageEditor\libs\glfw\lib-vc2010-64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;opencv_world470d.lib;opencv_world470.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

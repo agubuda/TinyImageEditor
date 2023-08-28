@@ -1,6 +1,15 @@
 #include "GLFW/glfw3.h"
+#include "opencv.hpp"
+#include <opencv2/core.hpp>
+//#include <opencv2/imgcodecs.hpp>
+//#include <opencv2/highgui.hpp>
 #include "texture.h"
 #include "windows.h"
+
+//using namespace std;
+//using namespace cv;
+
+
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -86,12 +95,12 @@ void Texture::OutputSingleChannalImage(const std::string& inPath, const std::str
 {
     int width, height, nrChannels;
     unsigned char* data = NULL;
-    data = stbi_load(inPath.c_str(), &width, &height, &nrChannels, 3);
+    data = stbi_load(inPath.c_str(), &width, &height, &nrChannels, 4);
 
     unsigned int outputDataMem = 512 * 512 * 1;
-    //unsigned char* outData = (unsigned char*)malloc(outputDataMem);
+    unsigned char* outData = (unsigned char*)malloc(outputDataMem);
 
-    //stbir_resize(data, width, height, nrChannels, outData, outputChannel[0], outputChannel[1], outputChannel[2], STBIR_TYPE_UINT8, nrChannels, STBIR_ALPHA_CHANNEL_NONE, 0,
+    //stbir_resize(data, width, height, nrChannels, outData, width, height, 1, STBIR_TYPE_UINT8, nrChannels, STBIR_ALPHA_CHANNEL_NONE, 0,
     //    STBIR_EDGE_CLAMP, STBIR_EDGE_CLAMP,
     //    STBIR_FILTER_BOX, STBIR_FILTER_BOX,
     //    STBIR_COLORSPACE_SRGB, nullptr
@@ -104,11 +113,13 @@ void Texture::OutputSingleChannalImage(const std::string& inPath, const std::str
     //std::filesystem::
     //stbiw__write_pixel(data,)
 
-    if (comp < 0 || comp> 3) {
+
+
+    if (comp < 0 || comp> 4) {
         std::cout << "input channel Out of range." << std::endl;
     }
     else {
-        stbi_write_png(outPath.c_str(), 512, 512, comp, data, comp * 512);
+        stbi_write_png(outPath.c_str(), width, height, comp, data, 0);
         //stbi_write_jpg(outPath.c_str(), 512, 512, comp, data, 100);
 
         Sleep(500);
@@ -116,8 +127,17 @@ void Texture::OutputSingleChannalImage(const std::string& inPath, const std::str
 
     }
 
-
-
+    //cv::Mat img(600, 800, CV_8UC3, cv::Scalar(100, 250, 30));
+    cv::Mat img;
+    img = cv::imread("D:/container_R2.png"); // 改成自己的图片路径
+    //img = cv::imread("D:/abc.bmp"); // 改成自己的图片路径
+    if (img.empty())
+    {
+        std::cout << "请确认图像文件名是否正确" << std::endl;
+        /*return 0;*/
+    }
+    cv::imshow("test", img);
+    cv::waitKey(0);
 
 
     stbi_image_free(data);
