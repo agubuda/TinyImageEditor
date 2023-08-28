@@ -24,24 +24,30 @@ Texture::Texture(const std::string& path)
     m_LocalBuffer(nullptr),
     width(0),height(0),nrChannels(0)
 {
-    m_LocalBuffer = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
+    cv::Mat m_texture;
+    m_texture = cv::imread(path.c_str(),cv::IMREAD_ANYCOLOR);
+    cv::cvtColor(m_texture, m_texture, cv::COLOR_RGB2BGR);
+
+
+    //m_LocalBuffer = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
 
 
     glGenTextures(1, &m_textureID);
-
     glBindTexture(GL_TEXTURE_2D, m_textureID);
+
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, m_LocalBuffer);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_texture.cols, m_texture.rows, 0, GL_RGB, GL_UNSIGNED_BYTE, m_texture.data);
+
     image_id = (GLuint*)m_textureID;
     //glGenerateMipmap();
 
-    if (m_LocalBuffer) {
-        stbi_image_free(m_LocalBuffer);
-    }
+    //if (m_LocalBuffer) {
+    //    stbi_image_free(m_LocalBuffer);
+    //}
 }
 
 Texture::~Texture()
