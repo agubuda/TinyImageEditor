@@ -9,6 +9,7 @@
 #include "GLFW/glfw3.h"
 
 #include "texture.h"
+#include "filePath.h"
 
 
 namespace MyApp
@@ -142,6 +143,8 @@ namespace MyApp
         {
 
             Texture::OutputSingleChannalImage("C:\\Users\\container.jpg", "D:\\container_single.png", stride, comp);
+            FilePath filePath("D:/output/temp1/temp2/temp3/temp4/temp5/temp6/temp7/temp8/temp9.png");
+            filePath.CombineFilePath();
 
             //texture.ResizeImage("C:\\Users\\container.jpg", "D:\\container_resize.jpg");
         }
