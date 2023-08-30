@@ -10,15 +10,6 @@ FilePath::FilePath(std::string path)
 	//m_filePath = path;
 }
 
-//std::string FilePath::GetPath(std::string path)
-//{
-//};
-//
-//std::string GetFileName(std::string path)
-//{
-//	//FilePath::m_filePaht = std::filesystem::path(path).filename().string();
-//};
-
 std::string FilePath::CombineFilePath()
 {
 	std::vector<std::string> res;
@@ -65,3 +56,14 @@ std::string FilePath::CombineFilePath()
 
 	return result.str();
 };
+
+bool FilePath::FindExtension()
+{
+	std::string::size_type pos = 0;
+	if (pos != m_fileName.npos)
+	{
+		m_fileName.find(".png");
+	}
+
+	return true;
+}

@@ -13,4 +13,5 @@ public:
 
 
 	std::string CombineFilePath();
+	bool FindExtension();
 };
