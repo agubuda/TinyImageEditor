@@ -3,7 +3,7 @@
 
 class FilePath
 {
-private:
+public:
 	std::string m_filePath;
 	std::string m_fileName;
 

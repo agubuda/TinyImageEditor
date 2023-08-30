@@ -4,6 +4,7 @@
 #include <filesystem>
 #include "imgui.h"
 
+
 class Texture {
 public:
     ImTextureID image_id;
@@ -25,7 +26,7 @@ public:
 
     static void ResizeImage(const std::string& inPath, const std::string& outPath, int outputChannel[]);
 
-    static void OutputSingleChannalImage(const std::string& inPath, const std::string& outPath, int stride, int comp);
+    static void OutputSingleChannalImage(const std::string& inPath);
 };
 
 

@@ -7,6 +7,7 @@
 //#include <opencv2/highgui.hpp>
 #include "texture.h"
 #include "windows.h"
+#include "filePath.h"
 
 //using namespace std;
 //using namespace cv;
@@ -99,12 +100,20 @@ void Texture::ResizeImage(const std::string& inPath, const std::string& outPath,
 int Texture::a = 0;
 
 
-void Texture::OutputSingleChannalImage(const std::string& inPath, const std::string& outPath, int stride, int comp)
+void Texture::OutputSingleChannalImage(const std::string& inPath)
 {
-    std::string outputDir = "D:/output";
+    FilePath filePath(inPath);
+
+    if (!std::filesystem::exists(inPath))
+    {
+        std::cout << "plz input valid file path." << std::endl;
+        return;
+    }
+
+    std::string temp = filePath.m_filePath + "/" + filePath.m_fileName;
 
     cv::Mat originalImg;
-    originalImg = cv::imread(inPath.c_str()); // 改成自己的图片路径
+    originalImg = cv::imread(temp.c_str()); // 改成自己的图片路径
     if (originalImg.empty())
     {
         std::cout << "请确认图像文件名是否正确" << std::endl;
@@ -115,23 +124,10 @@ void Texture::OutputSingleChannalImage(const std::string& inPath, const std::str
 
     cv::imshow("gray scale result", grayImg);
 
-    //outputDir + "grayScaleImage.png";
 
     //creat directory and file
-    std::filesystem::path outputPath(outputDir);
-    try 
-    {
-        std::filesystem::create_directory(outputPath);
-        std::cout << "Successfully created directory " << outputPath << std::endl;
-    }
-    catch (std::filesystem::filesystem_error& e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
-
-
-    std::string fileName = std::filesystem::path(inPath).filename().string();
-    std::string fullOutputPath = outputDir + "/" + fileName;
+    std::string fileName = std::filesystem::path(temp.c_str()).filename().string();
+    std::string fullOutputPath = filePath.CombineFilePath();
 
     cv::imwrite(fullOutputPath, grayImg);
 

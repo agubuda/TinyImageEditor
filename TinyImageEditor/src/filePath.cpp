@@ -24,14 +24,14 @@ std::string FilePath::CombineFilePath()
 	std::vector<std::string> res;
 	std::string::size_type pos = 0;
 	std::stringstream result;
-	std::string src = m_filePath + "/" + m_fileName + "/";
+	std::string src = m_filePath + "/";
 
 	pos = src.find('/', pos);
 
 	while (pos != src.npos)
 	{
 		std::string temp = src.substr(0, pos);
-		if (res.size() == 2) {
+		if (res.size() == 1) {
 			res.push_back("_ConvertResult");
 		}
 		res.push_back(temp);
@@ -46,8 +46,22 @@ std::string FilePath::CombineFilePath()
 			result << "/";
 		}
 		result << res[i];
-		std::cout << result.str() << std::endl;
+
+		std::filesystem::path outputPath(result.str());
+		try
+		{
+			std::filesystem::create_directory(outputPath);
+			std::cout << "Successfully created directory " << outputPath << std::endl;
+		}
+		catch (std::filesystem::filesystem_error& e)
+		{
+			std::cerr << "sth fuuuuuuuuuucking wrong " << e.what() << std::endl;
+		}
 	}
+
+
+	result << "/";
+	result << m_fileName;
 
 	return result.str();
 };

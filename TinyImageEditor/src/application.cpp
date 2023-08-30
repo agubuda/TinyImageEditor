@@ -135,16 +135,18 @@ namespace MyApp
             //texture.ResizeImage("C:\\Users\\container.jpg", "D:\\container_resize.jpg");
         }
 
-        static int stride = 0;
-        static int comp = 1;
-        ImGui::InputInt("Stride", &stride);
-        ImGui::InputInt("Comp", &comp);
+        //static int stride = 0;
+        //static int comp = 1;
+        //ImGui::InputInt("Stride", &stride);
+        //ImGui::InputInt("Comp", &comp);
+        static char str0[128] = "Input image Path here.";
+        ImGui::InputText("Image path", str0, IM_ARRAYSIZE(str0));
+        //ImGui::InputTextWithHint("Image path", "Image path", str0, IM_ARRAYSIZE(str0), ImGuiInputTextFlags_CharsNoBlank);
+        ImGui::Text("Just like C:/User/picture.png");
         if (ImGui::Button("Generate Single"))
         {
-
-            Texture::OutputSingleChannalImage("C:\\Users\\container.jpg", "D:\\container_single.png", stride, comp);
-            FilePath filePath("D:/output/temp1/temp2/temp3/temp4/temp5/temp6/temp7/temp8/temp9.png");
-            filePath.CombineFilePath();
+            std::string inPath = str0;
+            Texture::OutputSingleChannalImage(inPath);
 
             //texture.ResizeImage("C:\\Users\\container.jpg", "D:\\container_resize.jpg");
         }
