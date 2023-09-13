@@ -57,13 +57,44 @@ std::string FilePath::CombineFilePath()
 	return result.str();
 };
 
-bool FilePath::FindExtension()
+bool FilePath::FindExtension(std::string filename)
 {
 	std::string::size_type pos = 0;
-	if (pos != m_fileName.npos)
+	pos = filename.find(".png");
+
+	//you have to determine result with .npos, not with a usigned int.
+	if (pos != filename.npos)
 	{
-		m_fileName.find(".png");
+		std::cout << "Here is a png file. " << std::endl;
+
+		return true;
+
+	}
+	else
+	{
+		std::cout << "No png file," << std::endl;
+
+		return false;
+
+	}
+}
+
+void FilePath::ListAllFiles()
+{
+	std::vector<std::string> res;
+	if (!std::filesystem::exists(m_filePath))
+	{
+		std::cout << "plz input valid file path." << std::endl;
+		return;
+	}
+	for (const auto& file : std::filesystem::directory_iterator(m_filePath)) {
+		std::cout << file.path() << std::endl;
+		{
+			std::cout << file.path().filename().string() << std::endl;
+			if(FindExtension(file.path().filename().string()))
+			res.push_back(file.path().filename().string());
+
+		}
 	}
 
-	return true;
 }

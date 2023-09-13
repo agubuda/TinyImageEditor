@@ -148,6 +148,19 @@ namespace MyApp
             std::string inPath = str0;
             Texture::OutputSingleChannalImage(inPath);
 
+            
+
+            //texture.ResizeImage("C:\\Users\\container.jpg", "D:\\container_resize.jpg");
+        }
+        if (ImGui::Button("list files"))
+        {
+            std::string inPath = str0;
+            FilePath file = inPath;
+            file.ListAllFiles();
+
+
+
+
             //texture.ResizeImage("C:\\Users\\container.jpg", "D:\\container_resize.jpg");
         }
 

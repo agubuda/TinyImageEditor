@@ -104,11 +104,15 @@ void Texture::OutputSingleChannalImage(const std::string& inPath)
 {
     FilePath filePath(inPath);
 
+
+
     if (!std::filesystem::exists(inPath))
     {
         std::cout << "plz input valid file path." << std::endl;
         return;
     }
+
+
 
     std::string temp = filePath.m_filePath + "/" + filePath.m_fileName;
 
