@@ -79,7 +79,7 @@ bool FilePath::FindExtension(std::string filename)
 	}
 }
 
-void FilePath::ListAllFiles()
+std::vector<std::string> FilePath::ListAllFiles()
 {
 	std::vector<std::string> res;
 	if (!std::filesystem::exists(m_filePath))
@@ -96,5 +96,7 @@ void FilePath::ListAllFiles()
 
 		}
 	}
+
+	return res;
 
 }

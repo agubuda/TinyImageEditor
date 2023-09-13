@@ -14,5 +14,5 @@ public:
 
 	std::string CombineFilePath();
 	static bool FindExtension(std::string filename);
-	void ListAllFiles();
+	std::vector<std::string> ListAllFiles();
 };
