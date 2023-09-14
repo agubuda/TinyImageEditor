@@ -142,7 +142,7 @@ namespace MyApp
         static char str0[128] = "Input image Path here.";
         ImGui::InputText("Image path", str0, IM_ARRAYSIZE(str0));
         //ImGui::InputTextWithHint("Image path", "Image path", str0, IM_ARRAYSIZE(str0), ImGuiInputTextFlags_CharsNoBlank);
-        ImGui::Text("Just like C:/User/picture.png");
+        ImGui::Text("Just like C:/Users/liuwangyang/Pictures/icon.jpg");
         if (ImGui::Button("Generate Single"))
         {
             std::string inPath = str0;
@@ -152,11 +152,15 @@ namespace MyApp
 
             //texture.ResizeImage("C:\\Users\\container.jpg", "D:\\container_resize.jpg");
         }
+
+        static char str1[128] = "C:/Users/liuwangyang/Pictures/";
+        ImGui::InputText("Image path", str1, IM_ARRAYSIZE(str1));
+        ImGui::Text("Just like C:/Users/liuwangyang/Pictures/");
         if (ImGui::Button("list files"))
         {
-            std::string inPath = str0;
-            FilePath file = inPath;
-            file.ListAllFiles();
+            std::string dirPath = str1;
+            FilePath file = dirPath;
+            file.ListAllFilenames();
 
 
 

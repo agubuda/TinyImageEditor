@@ -65,37 +65,90 @@ bool FilePath::FindExtension(std::string filename)
 	//you have to determine result with .npos, not with a usigned int.
 	if (pos != filename.npos)
 	{
-		std::cout << "Here is a png file. " << std::endl;
+		//std::cout << "Here is a png file. " << std::endl;
 
 		return true;
 
 	}
 	else
 	{
-		std::cout << "No png file," << std::endl;
+		//std::cout << "No png file," << std::endl;
 
 		return false;
 
 	}
 }
 
-std::vector<std::string> FilePath::ListAllFiles()
+std::vector<std::string> FilePath::ListAllFilenames()
 {
 	std::vector<std::string> res;
 	if (!std::filesystem::exists(m_filePath))
 	{
 		std::cout << "plz input valid file path." << std::endl;
-		return;
+		return res;
 	}
 	for (const auto& file : std::filesystem::directory_iterator(m_filePath)) {
-		std::cout << file.path() << std::endl;
+		//std::cout << file.path() << std::endl;
 		{
-			std::cout << file.path().filename().string() << std::endl;
-			if(FindExtension(file.path().filename().string()))
-			res.push_back(file.path().filename().string());
+			if (FindExtension(file.path().filename().string())) {
+				res.push_back(file.path().filename().string());
+				//std::cout << file.path().filename().string() << std::endl;
 
+			}
 		}
 	}
+
+
+	std::vector<std::string> combineRes;
+	std::string::size_type pos = 0;
+	std::string src = m_filePath + "/";
+
+	pos = src.find('/', pos);
+
+	while (pos != src.npos)
+	{
+		std::string temp = src.substr(0, pos);
+		if (combineRes.size() == 1) {
+			combineRes.push_back("_ConvertResult");
+		}
+		combineRes.push_back(temp);
+		src = src.substr(pos + 1, src.size());
+		pos = src.find('/');
+	}
+
+	for (int n = 0; n < res.size(); n++)
+	{
+		std::stringstream result;
+
+		for (int i = 0; i < combineRes.size(); i++)
+		{
+			if (i != 0)
+			{
+				result << "/";
+			}
+			result << combineRes[i];
+
+			std::filesystem::path outputPath(result.str());
+			try
+			{
+				std::filesystem::create_directory(outputPath);
+				std::cout << "Successfully created directory " << outputPath << std::endl;
+			}
+			catch (std::filesystem::filesystem_error& e)
+			{
+				std::cerr << "sth fuuuuuuuuuucking wrong " << e.what() << std::endl;
+			}
+		}
+
+		result << "/";
+		result << res[n];
+
+		res[n] = result.str();
+		std::cout << res[n] << std::endl;
+
+	}
+
+
 
 	return res;
 
