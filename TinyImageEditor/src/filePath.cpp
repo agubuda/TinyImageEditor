@@ -43,7 +43,7 @@ std::string FilePath::CombineFilePath()
 		try
 		{
 			std::filesystem::create_directory(outputPath);
-			std::cout << "Successfully created directory " << outputPath << std::endl;
+			//std::cout << "Successfully created directory " << outputPath << std::endl;
 		}
 		catch (std::filesystem::filesystem_error& e)
 		{
@@ -66,9 +66,7 @@ bool FilePath::FindExtension(std::string filename)
 	//you have to determine result with .npos, not with a usigned int.
 	if (metaPos != filename.npos)
 	{
-
 		return false;
-
 	}
 	else
 	{
@@ -159,7 +157,7 @@ std::vector<std::string> FilePath::ListAllFilenames()
 			try
 			{
 				std::filesystem::create_directory(outputPath);
-				std::cout << "Successfully created directory " << outputPath << std::endl;
+				//std::cout << "Successfully created directory " << outputPath << std::endl;
 			}
 			catch (std::filesystem::filesystem_error& e)
 			{

@@ -166,6 +166,7 @@ namespace MyApp
             for (int i = 0; i < imageList.size(); i++)
             {
                 Texture::OutputSingleChannalImage(imageList[i]);
+                std::cout << "finished" << i - 1 << " in " << imageList.size() << std::endl;
             }
 
             //texture.ResizeImage("C:\\Users\\container.jpg", "D:\\container_resize.jpg");
