@@ -1,6 +1,7 @@
 #include <iostream>
 #include <filesystem>
 #include <sstream>
+#include <algorithm>
 #include "filePath.h"
 
 FilePath::FilePath(std::string path)
@@ -59,45 +60,71 @@ std::string FilePath::CombineFilePath()
 
 bool FilePath::FindExtension(std::string filename)
 {
-	std::string::size_type pos = 0;
-	pos = filename.find(".png");
+	std::string::size_type metaPos = 0;
+	metaPos = filename.find(".meta");
 
 	//you have to determine result with .npos, not with a usigned int.
-	if (pos != filename.npos)
+	if (metaPos != filename.npos)
 	{
-		//std::cout << "Here is a png file. " << std::endl;
-
-		return true;
-
-	}
-	else
-	{
-		//std::cout << "No png file," << std::endl;
 
 		return false;
 
 	}
+	else
+	{
+		//std::cout << "Here is a png file. " << std::endl;
+
+		std::string::size_type pngPos = 0;
+		pngPos = filename.find(".png");
+
+		//you have to determine result with .npos, not with a usigned int.
+		if (pngPos != filename.npos)
+		{
+			//std::cout << "Here is a png file. " << std::endl;
+
+			return true;
+
+		}
+		else
+		{
+			//std::cout << "No png file," << std::endl;
+
+			return false;
+
+		}
+	}
+
+
 }
 
 std::vector<std::string> FilePath::ListAllFilenames()
 {
-	std::vector<std::string> res;
+	std::vector<std::string> pathRes;
+	std::vector<std::string> filenameRes;
+
+	std::string temp;
+
 	if (!std::filesystem::exists(m_filePath))
 	{
 		std::cout << "plz input valid file path." << std::endl;
-		return res;
+		return pathRes;
 	}
-	for (const auto& file : std::filesystem::directory_iterator(m_filePath)) {
+	for (const auto& file : std::filesystem::recursive_directory_iterator(m_filePath)) {
 		//std::cout << file.path() << std::endl;
 		{
-			if (FindExtension(file.path().filename().string())) {
-				res.push_back(file.path().filename().string());
+			temp = file.path().string();
+			if (FindExtension(temp)) {
+				//res.push_back(file.path().filename().string());
+				std::replace(temp.begin(), temp.end(), '\\', '/');
+				pathRes.push_back(temp);
+				filenameRes.push_back(file.path().filename().string());
 				//std::cout << file.path().filename().string() << std::endl;
 
 			}
 		}
 	}
 
+	return pathRes;
 
 	std::vector<std::string> combineRes;
 	std::string::size_type pos = 0;
@@ -108,15 +135,15 @@ std::vector<std::string> FilePath::ListAllFilenames()
 	while (pos != src.npos)
 	{
 		std::string temp = src.substr(0, pos);
-		if (combineRes.size() == 1) {
-			combineRes.push_back("_ConvertResult");
-		}
+		//if (combineRes.size() == 1) {
+		//	combineRes.push_back("_ConvertResult");
+		//}
 		combineRes.push_back(temp);
 		src = src.substr(pos + 1, src.size());
 		pos = src.find('/');
 	}
 
-	for (int n = 0; n < res.size(); n++)
+	for (int n = 0; n < pathRes.size(); n++)
 	{
 		std::stringstream result;
 
@@ -141,15 +168,12 @@ std::vector<std::string> FilePath::ListAllFilenames()
 		}
 
 		result << "/";
-		result << res[n];
+		result << pathRes[n];
 
-		res[n] = result.str();
-		std::cout << res[n] << std::endl;
+		pathRes[n] = result.str();
+		std::cout << pathRes[n] << std::endl;
 
 	}
 
-
-
-	return res;
-
+	return pathRes;
 }

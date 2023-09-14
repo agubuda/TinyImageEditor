@@ -13,6 +13,8 @@ public:
 
 
 	std::string CombineFilePath();
-	static bool FindExtension(std::string filename);
 	std::vector<std::string> ListAllFilenames();
+
+	static bool FindExtension(std::string filename);
+
 };

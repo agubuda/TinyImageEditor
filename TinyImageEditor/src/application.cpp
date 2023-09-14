@@ -154,16 +154,19 @@ namespace MyApp
         }
 
         static char str1[128] = "C:/Users/liuwangyang/Pictures/";
-        ImGui::InputText("Image path", str1, IM_ARRAYSIZE(str1));
+        ImGui::InputText("Image dir", str1, IM_ARRAYSIZE(str1));
         ImGui::Text("Just like C:/Users/liuwangyang/Pictures/");
-        if (ImGui::Button("list files"))
+        if (ImGui::Button("Traversal convert image to grayscale"))
         {
+            std::vector<std::string> imageList;
             std::string dirPath = str1;
             FilePath file = dirPath;
-            file.ListAllFilenames();
+            imageList = file.ListAllFilenames();
 
-
-
+            for (int i = 0; i < imageList.size(); i++)
+            {
+                Texture::OutputSingleChannalImage(imageList[i]);
+            }
 
             //texture.ResizeImage("C:\\Users\\container.jpg", "D:\\container_resize.jpg");
         }
