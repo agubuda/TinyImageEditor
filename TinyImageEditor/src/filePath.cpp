@@ -8,8 +8,11 @@ FilePath::FilePath(std::string path)
 {
 	m_fileName = std::filesystem::path(path).filename().string();
 	m_filePath = std::filesystem::path(path).parent_path().string();
+	std::replace(m_filePath.begin(), m_filePath.end(), '\\', '/');
 	//m_filePath = path;
 }
+
+
 
 std::string FilePath::CombineFilePath()
 {
@@ -60,9 +63,21 @@ std::string FilePath::CombineFilePath()
 
 bool FilePath::FindExtension(std::string filename)
 {
-	std::string::size_type metaPos = 0;
-	metaPos = filename.find(".meta");
+	int startIndex = filename.size() - 4;
 
+	std::string::size_type Pos = 0;
+	Pos = filename.find(".png", startIndex);
+
+	if (Pos != filename.npos)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+	/*
 	//you have to determine result with .npos, not with a usigned int.
 	if (metaPos != filename.npos)
 	{
@@ -91,7 +106,7 @@ bool FilePath::FindExtension(std::string filename)
 
 		}
 	}
-
+	*/
 
 }
 

@@ -161,12 +161,13 @@ namespace MyApp
             std::vector<std::string> imageList;
             std::string dirPath = str1;
             FilePath file = dirPath;
+
             imageList = file.ListAllFilenames();
 
             for (int i = 0; i < imageList.size(); i++)
             {
                 Texture::OutputSingleChannalImage(imageList[i]);
-                std::cout << "finished" << i - 1 << " in " << imageList.size() << std::endl;
+                std::cout << "Converted " << i+1  << " in " << imageList.size() << std::endl;
             }
 
             //texture.ResizeImage("C:\\Users\\container.jpg", "D:\\container_resize.jpg");

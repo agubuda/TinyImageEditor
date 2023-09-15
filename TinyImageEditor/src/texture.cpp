@@ -104,8 +104,6 @@ void Texture::OutputSingleChannalImage(const std::string& inPath)
 {
     FilePath filePath(inPath);
 
-
-
     if (!std::filesystem::exists(inPath))
     {
         std::cout << "plz input valid file path." << std::endl;
@@ -124,7 +122,17 @@ void Texture::OutputSingleChannalImage(const std::string& inPath)
         /*return 0;*/
     }
     cv::Mat grayImg;
-    cv::cvtColor(originalImg, grayImg, cv::COLOR_BGR2GRAY);
+
+    try {
+        cv::cvtColor(originalImg, grayImg, cv::COLOR_BGR2GRAY);
+
+    }
+    catch (const char& e)
+    {
+        std::cerr << e << std::endl;
+        return;
+
+    }
 
     cv::imshow("gray scale result", grayImg);
 
