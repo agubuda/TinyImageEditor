@@ -106,7 +106,7 @@ void Texture::OutputSingleChannalImage(const std::string& inPath)
 
     if (!std::filesystem::exists(inPath))
     {
-        std::cout << "plz input valid file path." << std::endl;
+        std::cout << "open your eyes then input a valid file path." << std::endl;
         return;
     }
 
@@ -118,7 +118,7 @@ void Texture::OutputSingleChannalImage(const std::string& inPath)
     originalImg = cv::imread(temp.c_str()); // 改成自己的图片路径
     if (originalImg.empty())
     {
-        std::cout << "请确认图像文件名是否正确" << std::endl;
+        std::cout << "input a valid path you dick head!" << std::endl;
         /*return 0;*/
     }
     cv::Mat grayImg;
@@ -127,9 +127,10 @@ void Texture::OutputSingleChannalImage(const std::string& inPath)
         cv::cvtColor(originalImg, grayImg, cv::COLOR_BGR2GRAY);
 
     }
-    catch (const char& e)
+    catch (cv::Exception& e)
     {
-        std::cerr << e << std::endl;
+        const char* err = e.what();
+        std::cerr << "this pic is fucking toxic! " << err << std::endl;
         return;
 
     }
@@ -145,7 +146,7 @@ void Texture::OutputSingleChannalImage(const std::string& inPath)
 
 
 
-    std::cout << "succesfully convert file to "<< fullOutputPath << std::endl;
+    //std::cout << "succesfully convert file to "<< fullOutputPath << std::endl;
 
     //cv::waitKey(0);
 

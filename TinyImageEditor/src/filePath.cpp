@@ -54,7 +54,6 @@ std::string FilePath::CombineFilePath()
 		}
 	}
 
-
 	result << "/";
 	result << m_fileName;
 
