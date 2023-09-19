@@ -114,8 +114,9 @@ void Texture::OutputSingleChannalImage(const std::string& inPath)
 
     std::string temp = filePath.m_filePath + "/" + filePath.m_fileName;
 
+    // cv初始化什么的
     cv::Mat originalImg;
-    originalImg = cv::imread(temp.c_str()); // 改成自己的图片路径
+    originalImg = cv::imread(temp.c_str()); 
     if (originalImg.empty())
     {
         std::cout << "input a valid path you dick head!" << std::endl;
@@ -135,7 +136,7 @@ void Texture::OutputSingleChannalImage(const std::string& inPath)
 
     }
 
-    cv::imshow("gray scale result", grayImg);
+    //cv::imshow("gray scale result", grayImg);
 
 
     //creat directory and file

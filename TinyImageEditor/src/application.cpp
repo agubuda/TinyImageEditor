@@ -15,14 +15,12 @@
 namespace MyApp
 {
     ImTextureID imImage_ID;
-    
+
     void RenderUI(unsigned int m_textureID)
     {
         static bool opt_fullscreen = true;
         static bool opt_padding = false;
         static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
-
-
 
         // We are using the ImGuiWindowFlags_NoDocking flag to make the parent window not dockable into,
         // because it would be confusing to have two docking targets within each others.
@@ -147,31 +145,54 @@ namespace MyApp
         {
             std::string inPath = str0;
             Texture::OutputSingleChannalImage(inPath);
-
-            
-
             //texture.ResizeImage("C:\\Users\\container.jpg", "D:\\container_resize.jpg");
         }
 
+
+        static float progress = 0.5f;
+        static bool showProgress = false;
         static char str1[128] = "C:/Users/liuwangyang/Pictures/";
         ImGui::InputText("Image dir", str1, IM_ARRAYSIZE(str1));
-        ImGui::Text("Just like C:/Users/liuwangyang/Pictures/");
         if (ImGui::Button("Traversal convert image to grayscale"))
         {
             std::vector<std::string> imageList;
             std::string dirPath = str1;
             FilePath file = dirPath;
 
+            static bool animate = true;
+
             imageList = file.ListAllFilenames();
+
 
             for (int i = 0; i < imageList.size(); i++)
             {
                 Texture::OutputSingleChannalImage(imageList[i]);
                 std::cout << "Converted " << i+1  << " in " << imageList.size() << std::endl;
+
+                progress += 0.1;
+                // Animate a simple progress bar
+                //IMGUI_DEMO_MARKER("Widgets/Plotting/ProgressBar");
+
             }
 
+            showProgress = true;
             //texture.ResizeImage("C:\\Users\\container.jpg", "D:\\container_resize.jpg");
         }
+
+        if (ImGui::Button("Traversal convert image to grayscale2"))
+        {
+            //t = true;
+        }
+
+        if (showProgress)
+        ImGui::ProgressBar(progress, ImVec2(0.0f, 0.0f));
+
+
+
+        // Typically we would use ImVec2(-1.0f,0.0f) or ImVec2(-FLT_MIN,0.0f) to use all available width,
+        // or ImVec2(width,0.0f) for a specified width. ImVec2(0.0f,0.0f) uses ItemWidth.
+
+        
 
         ImGui::End();
 
