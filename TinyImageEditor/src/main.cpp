@@ -40,9 +40,13 @@ static void glfw_error_callback(int error, const char* description)
     fprintf(stderr, "GLFW Error %d: %s\n", error, description);
 }
 
+
 // Main code
 int main(int, char**)
 {
+
+
+
     glfwSetErrorCallback(glfw_error_callback);
     if (!glfwInit())
         return 1;
@@ -71,7 +75,7 @@ int main(int, char**)
 #endif
 
     // Create window with graphics context
-    GLFWwindow* window = glfwCreateWindow(1280, 720, "Dear ImGui GLFW+OpenGL3 example", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(1280, 720, "Tiny Image Editor", nullptr, nullptr);
     if (window == nullptr)
         return 1;
     glfwMakeContextCurrent(window);
@@ -138,13 +142,6 @@ int main(int, char**)
     bool show_demo_window = true;
     bool show_another_window = false;
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
-
-
-    ////image loaded
-    //unsigned int Image = MyApp::LoadImage("C:\\Users\\container.jpg""C:\\Users\\container.jpg");
-    //MyApp::Image image;
-    //MyApp::ResizeImage("C:\\Users\\container.jpg", "D:\\container_R2.png", "D:\\temp");
 
     // Main loop
 #ifdef __EMSCRIPTEN__

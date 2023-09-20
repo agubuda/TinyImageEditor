@@ -193,3 +193,9 @@ void Texture::OutputSingleChannalImage(const std::string& inPath)
     //stbi_image_free(outData);
 
 };
+
+
+void Texture::outputText() {
+    while(true)
+        std::cout << "1/n";
+}

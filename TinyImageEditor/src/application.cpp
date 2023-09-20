@@ -2,6 +2,8 @@
 //#include <string.h>
 //#include <sstream>
 //#include <fstream>
+#include <thread>
+#include <mutex>
 
 #include "application.h"
 #include "imgui.h"
@@ -11,10 +13,45 @@
 #include "texture.h"
 #include "filePath.h"
 
+std::mutex mtx;
+static float progressBar;
+
+void process(std::vector<std::string> imageList)
+{
+    //std::vector<std::string> imageList;
+    //std::string dirPath = str1;
+    //FilePath file = dirPath;
+
+    //static bool animate = true;
+
+    //imageList = file.ListAllFilenames();
+
+    for (int i = 0; i < imageList.size(); i++)
+    {
+        std::lock_guard<std::mutex> lock(mtx);
+
+        Texture::OutputSingleChannalImage(imageList[i]);
+
+        progressBar = float(i+1) / float(imageList.size());
+
+        std::cout << progressBar  << std::endl;
+
+
+        std::cout << "Converted " << i + 1 << " in " << imageList.size() << std::endl;
+
+        // Animate a simple progress bar
+        //IMGUI_DEMO_MARKER("Widgets/Plotting/ProgressBar");
+
+    }
+}
+
+
 
 namespace MyApp
 {
     ImTextureID imImage_ID;
+
+
 
     void RenderUI(unsigned int m_textureID)
     {
@@ -149,10 +186,12 @@ namespace MyApp
         }
 
 
-        static float progress = 0.5f;
         static bool showProgress = false;
         static char str1[128] = "C:/Users/liuwangyang/Pictures/";
         ImGui::InputText("Image dir", str1, IM_ARRAYSIZE(str1));
+
+
+
         if (ImGui::Button("Traversal convert image to grayscale"))
         {
             std::vector<std::string> imageList;
@@ -163,36 +202,28 @@ namespace MyApp
 
             imageList = file.ListAllFilenames();
 
+            //for (int i = 0; i < imageList.size(); i++)
+            //{
+            //    Texture::OutputSingleChannalImage(imageList[i]);
+            //    std::cout << "Converted " << i+1  << " in " << imageList.size() << std::endl;
 
-            for (int i = 0; i < imageList.size(); i++)
-            {
-                Texture::OutputSingleChannalImage(imageList[i]);
-                std::cout << "Converted " << i+1  << " in " << imageList.size() << std::endl;
+            //    progress += 0.1;
+            //    // Animate a simple progress bar
+            //    //IMGUI_DEMO_MARKER("Widgets/Plotting/ProgressBar");
 
-                progress += 0.1;
-                // Animate a simple progress bar
-                //IMGUI_DEMO_MARKER("Widgets/Plotting/ProgressBar");
+            //}
 
-            }
-
+            std::thread (process, imageList).detach();
             showProgress = true;
             //texture.ResizeImage("C:\\Users\\container.jpg", "D:\\container_resize.jpg");
         }
-
-        if (ImGui::Button("Traversal convert image to grayscale2"))
-        {
-            //t = true;
-        }
-
         if (showProgress)
-        ImGui::ProgressBar(progress, ImVec2(0.0f, 0.0f));
+        {
+            ImGui::ProgressBar(progressBar, ImVec2(0.0f, 0.0f));
+            //progressBar += 0.01;
+            //std::cout << "fuckkkkkkkk" << progressBar << std::endl;
 
-
-
-        // Typically we would use ImVec2(-1.0f,0.0f) or ImVec2(-FLT_MIN,0.0f) to use all available width,
-        // or ImVec2(width,0.0f) for a specified width. ImVec2(0.0f,0.0f) uses ItemWidth.
-
-        
+        }
 
         ImGui::End();
 

@@ -27,6 +27,8 @@ public:
     static void ResizeImage(const std::string& inPath, const std::string& outPath, int outputChannel[]);
 
     static void OutputSingleChannalImage(const std::string& inPath);
+
+    static void outputText();
 };
 
 
