@@ -4,6 +4,7 @@
 //#include <fstream>
 #include <thread>
 #include <mutex>
+#include <atomic>
 
 #include "application.h"
 #include "imgui.h"
@@ -15,36 +16,25 @@
 
 std::mutex mtx;
 static float progressBar;
+std::atomic<float> progressBarPercentage(0.0f);
 
 void process(std::vector<std::string> imageList)
 {
-    //std::vector<std::string> imageList;
-    //std::string dirPath = str1;
-    //FilePath file = dirPath;
-
-    //static bool animate = true;
-
-    //imageList = file.ListAllFilenames();
-
     for (int i = 0; i < imageList.size(); i++)
     {
+        //线程锁
         std::lock_guard<std::mutex> lock(mtx);
 
         Texture::OutputSingleChannalImage(imageList[i]);
 
-        progressBar = float(i+1) / float(imageList.size());
-
-        std::cout << progressBar  << std::endl;
-
+        //改为原子变量
+        //progressBar = float(i+1) / float(imageList.size());
+        progressBarPercentage.store(float(i + 1) / float(imageList.size()));
 
         std::cout << "Converted " << i + 1 << " in " << imageList.size() << std::endl;
 
-        // Animate a simple progress bar
-        //IMGUI_DEMO_MARKER("Widgets/Plotting/ProgressBar");
-
     }
 }
-
 
 
 namespace MyApp
@@ -192,7 +182,7 @@ namespace MyApp
 
 
 
-        if (ImGui::Button("Traversal convert image to grayscale"))
+        if (ImGui::Button("Traversal convert images to grayscale"))
         {
             std::vector<std::string> imageList;
             std::string dirPath = str1;
@@ -219,7 +209,7 @@ namespace MyApp
         }
         if (showProgress)
         {
-            ImGui::ProgressBar(progressBar, ImVec2(0.0f, 0.0f));
+            ImGui::ProgressBar(progressBarPercentage, ImVec2(0.0f, 0.0f));
             //progressBar += 0.01;
             //std::cout << "fuckkkkkkkk" << progressBar << std::endl;
 
