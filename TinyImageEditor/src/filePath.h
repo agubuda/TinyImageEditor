@@ -11,10 +11,8 @@ public:
 	FilePath(std::string path);
 	//~FilePath();
 
-
 	std::string CombineFilePath();
-	std::vector<std::string> ListAllFilenames();
+	std::vector<std::string> ListAllFilePathes();
 
 	static bool FindExtension(std::string filename);
-
 };

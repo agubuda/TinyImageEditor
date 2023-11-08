@@ -12,8 +12,6 @@ FilePath::FilePath(std::string path)
 	//m_filePath = path;
 }
 
-
-
 std::string FilePath::CombineFilePath()
 {
 	std::vector<std::string> res;
@@ -34,7 +32,7 @@ std::string FilePath::CombineFilePath()
 		pos = src.find('/');
 	}
 
-	for (int i = 0; i<res.size(); i++)
+	for (int i = 0; i < res.size(); i++)
 	{
 		if (i != 0)
 		{
@@ -95,21 +93,18 @@ bool FilePath::FindExtension(std::string filename)
 			//std::cout << "Here is a png file. " << std::endl;
 
 			return true;
-
 		}
 		else
 		{
 			//std::cout << "No png file," << std::endl;
 
 			return false;
-
 		}
 	}
 	*/
-
 }
 
-std::vector<std::string> FilePath::ListAllFilenames()
+std::vector<std::string> FilePath::ListAllFilePathes()
 {
 	std::vector<std::string> pathRes;
 	std::vector<std::string> filenameRes;
@@ -131,7 +126,6 @@ std::vector<std::string> FilePath::ListAllFilenames()
 				pathRes.push_back(temp);
 				filenameRes.push_back(file.path().filename().string());
 				//std::cout << file.path().filename().string() << std::endl;
-
 			}
 		}
 	}
@@ -184,7 +178,6 @@ std::vector<std::string> FilePath::ListAllFilenames()
 
 		pathRes[n] = result.str();
 		std::cout << pathRes[n] << std::endl;
-
 	}
 
 	return pathRes;

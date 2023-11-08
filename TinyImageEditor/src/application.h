@@ -2,8 +2,7 @@
 
 #include <iostream>
 
-
 namespace MyApp
 {
-    void RenderUI(unsigned int m_textureID);
+	void RenderUI(unsigned int m_textureID);
 }
