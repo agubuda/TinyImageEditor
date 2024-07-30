@@ -127,7 +127,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>Default</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\DEV\TinyImageEditor\TinyImageEditor\cv2;D:\DEV\TinyImageEditor\TinyImageEditor\stbi;D:\DEV\TinyImageEditor\TinyImageEditor\libs\glfw\include;D:\DEV\TinyImageEditor\TinyImageEditor\backend;D:\DEV\TinyImageEditor\TinyImageEditor\libs\glfw\include\GLFW;D:\DEV\TinyImageEditor\TinyImageEditor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)TinyImageEditor\cv2;$(SolutionDir)TinyImageEditor\stbi;$(SolutionDir)TinyImageEditor\libs\glfw\include;$(SolutionDir)TinyImageEditor\backend;$(SolutionDir)TinyImageEditor\libs\glfw\include\GLFW;$(SolutionDir)TinyImageEditor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
@@ -146,7 +146,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>Default</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\DEV\TinyImageEditor\TinyImageEditor\cv2;D:\DEV\TinyImageEditor\TinyImageEditor\stbi;D:\DEV\TinyImageEditor\TinyImageEditor\libs\glfw\include;D:\DEV\TinyImageEditor\TinyImageEditor\backend;D:\DEV\TinyImageEditor\TinyImageEditor\libs\glfw\include\GLFW;D:\DEV\TinyImageEditor\TinyImageEditor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)TinyImageEditor\cv2;$(SolutionDir)TinyImageEditor\stbi;$(SolutionDir)TinyImageEditor\libs\glfw\include;$(SolutionDir)TinyImageEditor\backend;$(SolutionDir)TinyImageEditor\libs\glfw\include\GLFW;$(SolutionDir)TinyImageEditor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
